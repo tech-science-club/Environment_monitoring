@@ -59,15 +59,21 @@ private:
     QTime time_count;
     QTime timer_;
 
-    int m_value;
+    double m_value;
+    int current_compound_index = 0;
     int temp;
     int hum;
     int CO2;
     int NH3;
     int CH4;
+    int H2S;
+    int LPG;
+    int C3H8;
     int VOC;
     int CO;
     int NO2;
+    int y_range_3_plot = 0;
+    QString file_name;
     double DRAP;
     float mkSv;
     float DRAPCounts;

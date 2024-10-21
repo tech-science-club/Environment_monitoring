@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new">
+        <file>title_icon.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>drop_down_arrow.png</file>
+    </qresource>
+</RCC>

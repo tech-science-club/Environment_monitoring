@@ -17,6 +17,13 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget
+{
+	
+	background-color: rgb(53, 53, 53);
+}</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
@@ -38,12 +45,38 @@
        <string/>
       </property>
       <property name="styleSheet">
-       <string notr="true">QTabWidget::pane {
+       <string notr="true">QTabWidget{
+color: rgb(255, 255, 255);
+}
+QTabWidget::pane {
     border: 1px solid black; /* Make the border less pronounced */
-    background-color:rgb(43, 43, 43);    /* Set a uniform background color */
+      /* Set a uniform background color */
+	background-color: rgb(40, 40, 40);
     margin: 0px;                /* Remove any default margin */
     padding: 0px;               /* Remove any default padding */
-}</string>
+	
+}
+QTabBar::tab {
+    background: rgb(65, 65, 65);
+    border: 1px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 15ex;
+    padding: 2px;
+	color: rgb(255, 255, 255);
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: rgb(88, 88, 88);
+}
+
+QTabBar::tab:selected {
+    border-color: rgb(0, 255, 127);
+    border-bottom-color: #C2C7CB; /* same as pane color */
+}
+
+</string>
       </property>
       <property name="tabPosition">
        <enum>QTabWidget::TabPosition::North</enum>
@@ -151,8 +184,8 @@
         <widget class="QWidget" name="rad_widget_2" native="true">
          <property name="geometry">
           <rect>
-           <x>437</x>
-           <y>0</y>
+           <x>440</x>
+           <y>90</y>
            <width>141</width>
            <height>91</height>
           </rect>
@@ -235,7 +268,7 @@
           <property name="geometry">
            <rect>
             <x>88</x>
-            <y>44</y>
+            <y>53</y>
             <width>51</width>
             <height>41</height>
            </rect>
@@ -249,6 +282,7 @@
     background-color: black;
     font: bold 10px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -284,6 +318,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -300,8 +335,8 @@
         <widget class="QWidget" name="rad_widget" native="true">
          <property name="geometry">
           <rect>
-           <x>437</x>
-           <y>90</y>
+           <x>440</x>
+           <y>180</y>
            <width>141</width>
            <height>91</height>
           </rect>
@@ -372,6 +407,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -388,7 +424,7 @@
           <property name="geometry">
            <rect>
             <x>90</x>
-            <y>44</y>
+            <y>54</y>
             <width>49</width>
             <height>41</height>
            </rect>
@@ -402,6 +438,7 @@
     background-color: none;
     font: bold 10px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -486,6 +523,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -520,6 +558,7 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -532,8 +571,8 @@
          <widget class="QLabel" name="label_9">
           <property name="geometry">
            <rect>
-            <x>53</x>
-            <y>38</y>
+            <x>60</x>
+            <y>37</y>
             <width>41</width>
             <height>41</height>
            </rect>
@@ -554,6 +593,7 @@
     background-color: none;
     font:  24px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -588,6 +628,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -622,6 +663,7 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -692,9 +734,9 @@
          <widget class="QLabel" name="temp_label_2">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>101</width>
             <height>40</height>
            </rect>
           </property>
@@ -714,6 +756,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -726,8 +769,8 @@
          <widget class="QLabel" name="label_16">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>100</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -748,10 +791,11 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -808,18 +852,18 @@
 }</string>
           </property>
           <property name="text">
-           <string>NH3</string>
+           <string>H2S</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="temp_label_3">
+         <widget class="QLabel" name="H2S_label">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>111</width>
             <height>40</height>
            </rect>
           </property>
@@ -839,6 +883,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -851,8 +896,8 @@
          <widget class="QLabel" name="label_17">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>104</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -873,10 +918,11 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -939,12 +985,12 @@
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="temp_label_4">
+         <widget class="QLabel" name="CH4_Label">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>101</width>
             <height>40</height>
            </rect>
           </property>
@@ -964,6 +1010,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -976,8 +1023,8 @@
          <widget class="QLabel" name="label_18">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>104</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -998,10 +1045,11 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1064,12 +1112,12 @@
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="temp_label_5">
+         <widget class="QLabel" name="NO2_label">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>111</width>
             <height>40</height>
            </rect>
           </property>
@@ -1089,6 +1137,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -1101,8 +1150,8 @@
          <widget class="QLabel" name="label_20">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>104</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -1123,10 +1172,11 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1189,12 +1239,12 @@
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="temp_label_6">
+         <widget class="QLabel" name="voc_label">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>111</width>
             <height>40</height>
            </rect>
           </property>
@@ -1214,6 +1264,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -1226,8 +1277,8 @@
          <widget class="QLabel" name="label_22">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>104</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -1248,10 +1299,11 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1308,18 +1360,18 @@
 }</string>
           </property>
           <property name="text">
-           <string>NH3</string>
+           <string>LPG</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="temp_label_7">
+         <widget class="QLabel" name="LPG_label">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>111</width>
             <height>40</height>
            </rect>
           </property>
@@ -1339,6 +1391,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -1351,8 +1404,8 @@
          <widget class="QLabel" name="label_24">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>104</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -1373,10 +1426,11 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1439,12 +1493,12 @@
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="temp_label_8">
+         <widget class="QLabel" name="CO_label">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>111</width>
             <height>40</height>
            </rect>
           </property>
@@ -1464,6 +1518,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -1476,8 +1531,8 @@
          <widget class="QLabel" name="label_26">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>104</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -1498,10 +1553,11 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1564,12 +1620,12 @@
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="temp_label_9">
+         <widget class="QLabel" name="NH3_label">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>10</x>
             <y>40</y>
-            <width>61</width>
+            <width>111</width>
             <height>40</height>
            </rect>
           </property>
@@ -1589,6 +1645,7 @@
     background-color: none;
     font: bold 30px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
@@ -1601,8 +1658,8 @@
          <widget class="QLabel" name="label_28">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>40</y>
+            <x>104</x>
+            <y>58</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -1623,10 +1680,138 @@
     background-color: none;
     font: bold 12px;
     padding: 6px;
+	color: white;
 }</string>
           </property>
           <property name="text">
-           <string>%</string>
+           <string>ppm</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="rad_widget_12" native="true">
+         <property name="geometry">
+          <rect>
+           <x>440</x>
+           <y>0</y>
+           <width>141</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+	border-color: gray;
+	border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: black;
+    font: bold30px;
+    padding: 6px;
+}</string>
+         </property>
+         <widget class="QLabel" name="label_31">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>101</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>-1</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel
+{
+	border-style: none;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: none;
+    font: bold 30px;
+    padding: 6px;
+	color: yellow;
+}</string>
+          </property>
+          <property name="text">
+           <string>C3H8</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="C3H8_label">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>111</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>-1</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel
+{
+	border-style: none;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: none;
+    font: bold 30px;
+    padding: 6px;
+	color: white;
+}</string>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_32">
+          <property name="geometry">
+           <rect>
+            <x>104</x>
+            <y>58</y>
+            <width>41</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>-1</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel
+{
+	border-style: none;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: none;
+    font: bold 12px;
+    padding: 6px;
+	color: white;
+}</string>
+          </property>
+          <property name="text">
+           <string>ppm</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1734,13 +1919,23 @@ QGroupBox::title {
 	border: 1px solid gray;
     border-radius: 3px;
     padding: 1px 1px 1px 1px;
+    background-color: rgb(53, 53, 53);
+	color: rgb(255, 255, 255);
 } 
 QComboBox::drop-down
 {
 	border: none;
+	background-color: rgb(53, 53, 53);
+	color: rgb(255, 255, 255);
 }
+
+QComboBox QAbstractItemView {
+   color: rgb(255, 255, 255)
+}
+
 QComboBox::down-arrow {
-    image: url(&quot;C:/Users/admin/Documents/EnvironmentPro/build/Desktop_Qt_6_7_2_llvm_mingw_64_bit-Debug/pngwing.com.png&quot;);
+    /*image: url(&quot;C:/Users/admin/Documents/EnvironmentPro/drop_down_arrow.png&quot;);*/
+	image: url(&quot;:/drop_down_arrow.png&quot;);
 }</string>
          </property>
          <item>
@@ -1785,6 +1980,11 @@ QComboBox::down-arrow {
            <bold>false</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+color: white;
+}</string>
+         </property>
          <property name="text">
           <string>Baudrate</string>
          </property>
@@ -1794,7 +1994,7 @@ QComboBox::down-arrow {
           <rect>
            <x>53</x>
            <y>20</y>
-           <width>71</width>
+           <width>70</width>
            <height>24</height>
           </rect>
          </property>
@@ -1811,13 +2011,22 @@ QComboBox::down-arrow {
 	border: 1px solid gray;
     border-radius: 3px;
     padding: 1px 1px 1px 1px;
+   
+	background-color: rgb(53, 53, 53);
+    color: rgb(255, 255, 255);
 } 
 QComboBox::drop-down
 {
 	border: none;
+    background-color: rgb(53, 53, 53);
+	color: rgb(255, 255, 255);
 }
-QComboBox::down-arrow {
-    image: url(&quot;C:/Users/admin/Documents/EnvironmentPro/build/Desktop_Qt_6_7_2_llvm_mingw_64_bit-Debug/pngwing.com.png&quot;);
+QComboBox::down-arrow { /*C:/Users/admin/Documents/EnvironmentPro/drop_down_arrow.png*/
+    image: url(&quot;:/drop_down_arrow.png&quot;);
+	
+}
+QComboBox QAbstractItemView {
+   color: rgb(255, 255, 255)
 }</string>
          </property>
          <property name="insertPolicy">
@@ -1858,9 +2067,9 @@ QComboBox::down-arrow {
         <widget class="QLabel" name="label_10">
          <property name="geometry">
           <rect>
-           <x>-8</x>
+           <x>2</x>
            <y>18</y>
-           <width>71</width>
+           <width>51</width>
            <height>28</height>
           </rect>
          </property>
@@ -1870,6 +2079,11 @@ QComboBox::down-arrow {
            <italic>false</italic>
            <bold>false</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+color: white;
+}</string>
          </property>
          <property name="text">
           <string>Port</string>
@@ -1918,9 +2132,9 @@ QPushButton:pressed
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>0</y>
+          <y>-8</y>
           <width>911</width>
-          <height>41</height>
+          <height>51</height>
          </rect>
         </property>
         <property name="font">
@@ -1977,6 +2191,7 @@ QGroupBox::title {
 	
     background-color: transparent;
     subcontrol-position: top left; /* position at the top center */
+	color: white;
    
 }</string>
         </property>
@@ -2041,6 +2256,7 @@ QGroupBox::title {
 	
     background-color: transparent;
     subcontrol-position: top left; /* position at the top center */
+	color: white;
    
 }</string>
         </property>
@@ -2086,7 +2302,7 @@ QGroupBox::title {
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="page2">
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
@@ -2141,7 +2357,7 @@ QGroupBox::title {
          <rect>
           <x>120</x>
           <y>40</y>
-          <width>46</width>
+          <width>51</width>
           <height>22</height>
          </rect>
         </property>
@@ -2156,13 +2372,21 @@ QGroupBox::title {
 	border: 1px solid gray;
     border-radius: 3px;
     padding: 1px 1px 1px 1px;
+ 	color: rgb(255, 255, 255);
 } 
 QComboBox::drop-down
 {
 	border: none;
+	color: rgb(255, 255, 255);
 }
+
+QComboBox QAbstractItemView {
+   color: rgb(255, 255, 255)
+}
+
 QComboBox::down-arrow {
-    image: url(&quot;C:/Users/admin/Documents/EnvironmentPro/build/Desktop_Qt_6_7_2_llvm_mingw_64_bit-Debug/pngwing.com.png&quot;);
+   /* image: url(&quot;C:/Users/admin/Documents/EnvironmentPro/build/Desktop_Qt_6_7_2_llvm_mingw_64_bit-Debug/pngwing.com.png&quot;);*/
+	  image: url(&quot;:/drop_down_arrow.png&quot;);
 }</string>
         </property>
         <property name="editable">
@@ -2203,7 +2427,17 @@ QComboBox::down-arrow {
         </item>
         <item>
          <property name="text">
-          <string>All</string>
+          <string>H2S</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>LPG</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>C3H8</string>
          </property>
         </item>
        </widget>
@@ -2324,7 +2558,7 @@ QPushButton:pressed
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="page2">
+      <widget class="QWidget" name="page3">
        <attribute name="title">
         <string>Tab 3</string>
        </attribute>
@@ -2344,7 +2578,7 @@ QPushButton:pressed
           <x>470</x>
           <y>0</y>
           <width>231</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -2352,6 +2586,10 @@ QPushButton:pressed
           <pointsize>17</pointsize>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel
+{color: white;}</string>
         </property>
         <property name="text">
          <string> Json file</string>

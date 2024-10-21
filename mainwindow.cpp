@@ -14,7 +14,23 @@
 MainWindow::MainWindow(QWidget *parent)    :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    time_count(0,0,0), m_value(0), temp(0), hum(0), CO2(170), NH3(200), CH4(230), VOC(280), CO(300), NO2(350), DRAP(0), mkSv(0), DRAPCounts(0),  json_line(" ")
+    time_count(0,0,0),
+    m_value(0),
+    temp(0),
+    hum(0),
+    CO2(0),
+    NH3(0),
+    CH4(0),
+    VOC(0),
+    CO(0),
+    NO2(0),
+    DRAP(0),
+    mkSv(0),
+    DRAPCounts(0),
+    H2S(0),
+    LPG(0),
+    C3H8(0)
+
 {
     ui->setupUi(this);
 
@@ -76,6 +92,8 @@ MainWindow::MainWindow(QWidget *parent)    :
     });*/
     myTimer3->start(100);
 
+    //has migrated into separated Qtabwidget slot
+
     //set timer to udate plot
     time4 = 0.0;
     myTimer4 = new QTimer(this);
@@ -100,6 +118,40 @@ MainWindow::MainWindow(QWidget *parent)    :
     QPen Temppen;
     Temppen.setWidth(3);
     Temppen.setColor(QColorConstants::Red);
+
+    QPen COpen;
+    COpen.setWidth(3);
+    COpen.setColor(QColorConstants::Yellow);
+
+    QPen NH3pen;
+    NH3pen.setWidth(3);
+    NH3pen.setColor(QColorConstants::Blue);
+
+
+    QPen NO2pen;
+    NO2pen.setWidth(3);
+    NO2pen.setColor(QColorConstants::Magenta);
+
+    QPen H2Spen;
+    H2Spen.setWidth(3);
+    H2Spen.setColor(QColorConstants::Gray);
+
+    QPen LPGpen;
+    LPGpen.setWidth(3);
+    LPGpen.setColor(QColorConstants::Cyan);
+
+    QPen C3H8pen;
+    C3H8pen.setWidth(3);
+    C3H8pen.setColor(QColorConstants::LightGray);
+
+    QPen CH4pen;
+    CH4pen.setWidth(3);
+    CH4pen.setColor(QColorConstants::Green);
+
+    QPen VOCpen;
+    VOCpen.setWidth(3);
+    VOCpen.setColor(QColorConstants::White);
+
 
     QPen AxesPen;
     AxesPen.setColor(QColorConstants::White);
@@ -163,39 +215,57 @@ MainWindow::MainWindow(QWidget *parent)    :
     //-------------gases concentration---------------------
     ui->plot_box_3->addGraph();  // Graph 1
     ui->plot_box_3->graph(0)->setLineStyle((QCPGraph::lsLine));
-    ui->plot_box_3->graph(0)->setPen(QPen(Qt::red));  // Set color for graph 1
+    //ui->plot_box_3->graph(0)->setPen(QPen(Qt::red));  // Set color for graph 1
+    ui->plot_box_3->graph(0)->setPen(Temppen);
     ui->plot_box_3->graph(0)->setName("CO2"); // Set name for the legend
     //
 
     ui->plot_box_3->addGraph();  // Graph 2
     ui->plot_box_3->graph(1)->setLineStyle((QCPGraph::lsLine));
-    ui->plot_box_3->graph(1)->setPen(QPen(Qt::blue));  // Set color for graph 2
+    //ui->plot_box_3->graph(1)->setPen(QPen(Qt::blue));  // Set color for graph 2
+    ui->plot_box_3->graph(1)->setPen(NH3pen);
     ui->plot_box_3->graph(1)->setName("NH3"); // Set name for the legend
     //
 
     ui->plot_box_3->addGraph();  // Graph 3
     ui->plot_box_3->graph(2)->setLineStyle((QCPGraph::lsLine));
-    ui->plot_box_3->graph(2)->setPen(QPen(Qt::green));  // Set color for graph 3
+    ui->plot_box_3->graph(2)->setPen(CH4pen);  // Set color for graph 3 QPen(Qt::green)
     ui->plot_box_3->graph(2)->setName("CH4"); // Set name for the legend
     //
 
     ui->plot_box_3->addGraph();  // Graph 4
     ui->plot_box_3->graph(3)->setLineStyle((QCPGraph::lsLine));
-    ui->plot_box_3->graph(3)->setPen(QPen(Qt::magenta));  // Set color for graph 4
+    ui->plot_box_3->graph(3)->setPen(NO2pen);  // QPen(Qt::magenta)
     ui->plot_box_3->graph(3)->setName("NO2"); // Set name for the legend
     //
 
     ui->plot_box_3->addGraph();  // Graph 5
     ui->plot_box_3->graph(4)->setLineStyle((QCPGraph::lsLine));
-    ui->plot_box_3->graph(4)->setPen(QPen(Qt::yellow));  // Set color for graph 5
+    ui->plot_box_3->graph(4)->setPen(COpen);  // QPen(Qt::yellow)
     ui->plot_box_3->graph(4)->setName("CO"); // Set name for the legend
     //
 
-    ui->plot_box_3->addGraph();  // Graph 5
+    ui->plot_box_3->addGraph();  // Graph 6
     ui->plot_box_3->graph(5)->setLineStyle((QCPGraph::lsLine));
-    ui->plot_box_3->graph(5)->setPen(QPen(Qt::white));  // Set color for graph 5
+    ui->plot_box_3->graph(5)->setPen(VOCpen);  // QPen(Qt::white)
     ui->plot_box_3->graph(5)->setName("VOC"); // Set name for the legend
     //
+    ui->plot_box_3->addGraph();  // Graph 5
+    ui->plot_box_3->graph(6)->setLineStyle((QCPGraph::lsLine));
+    ui->plot_box_3->graph(6)->setPen(H2Spen);  // QPen(Qt::gray)
+    ui->plot_box_3->graph(6)->setName("H2S"); // Set name for the legend
+    //
+    ui->plot_box_3->addGraph();  // Graph 5
+    ui->plot_box_3->graph(7)->setLineStyle((QCPGraph::lsLine));
+    ui->plot_box_3->graph(7)->setPen(LPGpen);  // QPen(Qt::cyan)
+    ui->plot_box_3->graph(7)->setName("LPG"); // Set name for the legend
+    //
+    ui->plot_box_3->addGraph();  // Graph 5
+    ui->plot_box_3->graph(8)->setLineStyle((QCPGraph::lsLine));
+    ui->plot_box_3->graph(8)->setPen(C3H8pen);  // QPen(Qt::lightGray)
+    ui->plot_box_3->graph(8)->setName("C3H8"); // Set name for the legend
+    //
+
 
     // Set plot background and axis properties
     ui->plot_box_3->setBackground(Qt::black);
@@ -209,13 +279,26 @@ MainWindow::MainWindow(QWidget *parent)    :
     ui->plot_box_3->yAxis->setTickLabelColor(Qt::white);
     ui->plot_box_3->yAxis->setLabelColor(Qt::white);
     ui->plot_box_3->yAxis->setLabel("Concentration");
-    ui->plot_box_3->yAxis->setRange(0, 500);
+    ui->plot_box_3->yAxis->setRange(0, 750);
 
     // Enable and customize the legend
     ui->plot_box_3->legend->setVisible(true); // Make the legend visible
     ui->plot_box_3->legend->setBrush(QBrush(QColor(255, 255, 255, 150))); // Set background color with transparency
     ui->plot_box_3->legend->setBorderPen(QPen(Qt::black)); // Set border color
 
+    //ui->plot_box_3->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignRight | Qt::AlignTop);
+
+    // Optionally adjust the margins if the plot looks too squeezed
+    //ui->plot_box_3->axisRect()->setMinimumMargins(QMargins(0, 0, 10, 0));  // Add more space on the right for the legend
+
+    // QCPLayoutGrid *subLayout = new QCPLayoutGrid;
+    // ui->plot_box_3->plotLayout()->addElement(0, 1, subLayout);
+    // subLayout->addElement(0, 0, new QCPLayoutElement);
+    // subLayout->addElement(1, 0, ui->plot_box_3->legend);
+    // subLayout->addElement(2, 0, new QCPLayoutElement);
+    // subLayout->addElement(3, 0, new QCPLayoutElement);
+    // ui->plot_box_3->plotLayout()->setColumnStretchFactor(1, 0.001);
+    // ui->plot_box_3->plotLayout()->setRowStretchFactor(1, 0.001);
     //----------------------pollutants plot----------------------------------
 
     ui->label_33->setText(QString::number(CO2));
@@ -243,6 +326,7 @@ MainWindow::MainWindow(QWidget *parent)    :
 
     ui->plot_box_4->yAxis->setLabel("CO2");
     ui->plot_box_4->yAxis->setRange(0, CO2+CO2*0.3);
+
 
 
     //=========================================================================
@@ -279,25 +363,48 @@ void MainWindow::on_Port_connect_Button_clicked()
         qDebug() << "connected to "<< port << " with baud " <<baud;
     }
 
+    QString ext = ".txt";
+    QString currentDateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_HH-mm-ss");
+    file_name = currentDateTime+ext;
+
 
     connect(&serial,&QSerialPort::readyRead,this,&MainWindow::receiveMessage);
     //connect()
     Timer_count->start(1000);
     //timer_debugging->start(2000);
 }
+
 void MainWindow::receiveMessage(){
 
+
+    int compounds []{CO2, NH3, CH4, CO, NO2, LPG,  C3H8 };
+
+    int size = sizeof(compounds) / sizeof(compounds[0]);
+
+    int max = 0;
+
+    for (int i = 0; i < size; ++i) {
+        if (compounds[i] > max) {
+            max = compounds[i];
+        }
+    }
+
+    if(max>y_range_3_plot){
+        y_range_3_plot = max;
+    }
+
+    //qDebug()<<y_range_3_plot<<'\n';
+
+    ui->plot_box_3->yAxis->setRange(0, y_range_3_plot+y_range_3_plot*0.2);
+
     buffer.append(serial.readAll());
-    // Check if the buffer contains a complete JSON object (ending with \r\n or \n)
+
     while (buffer.contains("\n")) {
-        // Extract the first complete line (up to and including the \n)
+
         int endOfLineIndex = buffer.indexOf("\n");
         QByteArray line = buffer.left(endOfLineIndex);
-
-        // Remove the processed line from the buffer
         buffer.remove(0, endOfLineIndex + 1);
 
-        // Attempt to parse the JSON object
         QJsonDocument doc = QJsonDocument::fromJson(line);
         json_line = doc.toJson(QJsonDocument::Compact);
 
@@ -309,19 +416,37 @@ void MainWindow::receiveMessage(){
             CO2 = obj["CO2"].toInt();
             NH3 = obj["NH3"].toInt();
             CH4 = obj["CH4"].toInt();
-            VOC = obj["VOC"].toInt();
+            VOC = obj["VOC"].toDouble();
             CO = obj["CO"].toInt();
             NO2 = obj["NO2"].toInt();
             DRAP = obj["DRAP"].toInt();
+            H2S = obj["H2S"].toInt();
+            LPG = obj["LPG"].toInt();
+            C3H8 = obj["C3H8"].toInt();
 
-            //qDebug() << "Temperature:" << temp <<" "<<"humidity:"<<hum<<" " << "CO2: "<< CO2<<" "<< "NH3: "<< NH3<<" "<< "CH4: "<< CH4<<" "<< "VOC: " << VOC<<" "<<"CO: "<< CO<<" "<<"NO2: "<<NO2<<" "<< "DRAP: "<< DRAP;
+            qDebug() << "Temperature:" << temp <<" "<<"humidity:"<<hum<<" " << "CO2: "<< CO2<<" "<< "NH3: "<< NH3<<" "<< "CH4: "<< CH4<<" "<< "VOC: " << VOC<<" "<<"CO: "<< CO<<" "<<"NO2: "<<NO2<<" "<< "DRAP: "<< DRAP<<"H2S: "<<H2S<<" "<<
+                "LPG: "<<LPG<<" "<<"C3H8: "<<C3H8;
 
             DRAPCounts += DRAP;
-            //qDebug() << DRAPCounts;
         } else {
             qDebug() << "Invalid JSON received:" << line;
         }
 
+        //write json data into file
+
+         QString timestamp = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+
+        //qDebug() << file_name<<'\n';
+        QFile file(file_name);
+        if (file.open(QIODevice::WriteOnly |QIODevice::Text | QIODevice::Append)) {
+            QTextStream out(&file);
+            out <<timestamp<<": "<< json_line << '\n';  // Write the JSON string to the file
+            file.close();
+
+            //qDebug() << "JSON data written to sensor_data.txt";
+        } else {
+            qDebug() << "Failed to open the file for writing.";
+        }
     }
 
 }
@@ -340,6 +465,16 @@ void MainWindow::Update_labels()
    //qDebug() << "mkSv: "<<mkSv<< "DRAPCounts: "<<DRAPCounts << "DRAP: "<< DRAP;
     ui->temp_label->setText(QString::number(temp));
     ui->hum_label->setText(QString::number(hum));
+    ui->voc_label->setText(QString::number(VOC));
+    ui->C3H8_label->setText(QString::number(C3H8));
+    ui->CH4_Label->setText(QString::number(CH4));
+    ui->CO_label->setText(QString::number(CO));
+    ui->H2S_label->setText(QString::number(H2S));
+    ui->LPG_label->setText(QString::number(LPG));
+    ui->NH3_label->setText(QString::number(NH3));
+    ui->NO2_label->setText(QString::number(NO2));
+
+
 }
 
 // --------- func to update plots with timers---------------------
@@ -387,12 +522,7 @@ void MainWindow::update_plot2()
     if (mSV_y_axes < mkSv){
         mSV_y_axes = mkSv+mkSv*0.25;
     }
-    /*else {
-        QTimer::singleShot(10000, this, [&]() {
-            mSV_y_axes = 0.25;
-        });
 
-    }*/
     ui->plot_box_2->yAxis->setRange(-0.01, mSV_y_axes);
     ui->plot_box_2->graph()->addData(time2, mkSv);
 
@@ -427,32 +557,60 @@ void MainWindow::update_plot2()
 void MainWindow::update_plot3()
 {
     time3+=0.1;
-    /*if (DRAP_y_axes>DRAP){
-        DRAP_y_axes = DRAP_y_axes;
-    }
-    else{
-        DRAP_y_axes = DRAP + DRAP*0.33;
-    }*/
-    //ui->plot_box_1->yAxis->setRange(-0.05, DRAP_y_axes);
+
     ui->plot_box_3->graph(0)->addData(time3, CO2);
     ui->plot_box_3->graph(1)->addData(time3, NH3);
     ui->plot_box_3->graph(2)->addData(time3, CH4);
     ui->plot_box_3->graph(3)->addData(time3, NO2);
     ui->plot_box_3->graph(4)->addData(time3, CO);
     ui->plot_box_3->graph(5)->addData(time3, VOC);
-    //if (m_value){
-    //ui->plot_box_3->graph()->addData(time3, m_value);
-    //}
+    ui->plot_box_3->graph(6)->addData(time3, H2S);
+    ui->plot_box_3->graph(7)->addData(time3, LPG);
+    ui->plot_box_3->graph(8)->addData(time3, C3H8);
+
     ui->plot_box_3->replot();
     if (time>60){
         ui->plot_box_3->xAxis->setRange(time-60, time +10);
 
     }
+    ui->mkSv_label->setText(QString().setNum(mkSv, 'g', 2));
+    ui->temp_label_2->setText(QString().setNum(CO2));
+
 }
 
 void MainWindow::update_plot4()
 {
     time4+=0.1;
+    switch (current_compound_index) {  // You can store the selected index in a variable (e.g., current_compound_index)
+        case 0:  // CO2
+            m_value = CO2;
+            break;
+        case 1:  // NH3
+            m_value = NH3;
+            break;
+        case 2:  // CH4
+            m_value = CH4;
+            break;
+        case 3:  // VOC
+            m_value = NO2;
+            break;
+        case 4:  // CO
+            m_value = CO;
+            break;
+        case 5:  // NO2
+            m_value = VOC;
+            break;
+        case 6:  // NO2
+            m_value = H2S;
+            break;
+        case 7:  // NO2
+            m_value = LPG;
+            break;
+        case 8:  // NO2
+            m_value = C3H8;
+            break;
+    }
+    ui->label_33->setText(QString::number(m_value));
     ui->plot_box_4->yAxis->setRange(0, m_value+m_value*0.3);
     ui->plot_box_4->graph()->addData(time4, m_value);
     //qDebug() << time4;
@@ -466,78 +624,132 @@ void MainWindow::update_plot4()
 
 void MainWindow::on_select_compound_currentIndexChanged(int index)
 {
-    ui->plot_box_4->clearGraphs(); // Clear all graphs
-    ui->plot_box_4->addGraph();    // Add a new graph for the selected case
-    time4 = 0;                     // Reset time to start from 0
+    current_compound_index = index;    
+    ui->plot_box_4->clearGraphs();
+    ui->plot_box_4->addGraph();
+    time4 = 0;
 
+    QPen Temppen;
+    Temppen.setWidth(3);
+    Temppen.setColor(QColorConstants::Red);
+
+    QPen COpen;
+    COpen.setWidth(3);
+    COpen.setColor(QColorConstants::Yellow);
+
+    QPen NH3pen;
+    NH3pen.setWidth(3);
+    NH3pen.setColor(QColorConstants::Blue);
+
+
+    QPen NO2pen;
+    NO2pen.setWidth(3);
+    NO2pen.setColor(QColorConstants::Magenta);
+
+    QPen H2Spen;
+    H2Spen.setWidth(3);
+    H2Spen.setColor(QColorConstants::Gray);
+
+    QPen LPGpen;
+    LPGpen.setWidth(3);
+    LPGpen.setColor(QColorConstants::Cyan);
+
+    QPen C3H8pen;
+    C3H8pen.setWidth(3);
+    C3H8pen.setColor(QColorConstants::LightGray);
+
+    QPen CH4pen;
+    CH4pen.setWidth(3);
+    CH4pen.setColor(QColorConstants::Green);
+
+    QPen VOCpen;
+    VOCpen.setWidth(3);
+    VOCpen.setColor(QColorConstants::White);
     switch (index){
-    /*CO2(400), NH3(200), CH4(250),  VOC(320), CO(280), NO2(170)*/
+
     case 0:
 
-        m_value = CO2;
-        ui->label_33->setText(QString::number(m_value));
+
+        ui->label_34->setText("ppm");
         ui->plot_box_4->graph()->setName("CO2");
         ui->plot_box_4->yAxis->setLabel("CO2");
-        ui->plot_box_4->graph()->setPen(QPen(Qt::red));
+        ui->plot_box_4->graph()->setPen(Temppen);//QPen(Qt::red)
         ui->plot_box_4->xAxis->setRange(time4, 70);
-        //ui->plot_box_4->xAxis->setRange(time4, 70); // Set x-axis range from 0 to 60 (or other initial range)
-        ui->plot_box_4->replot();
         break;
 
     case 1:
 
-        m_value = NH3;
-        ui->label_33->setText(QString::number(m_value));
+        //m_value = NH3;
+        //ui->label_33->setText(QString::number(m_value));
         ui->plot_box_4->graph()->setName("NH3");
         ui->plot_box_4->yAxis->setLabel("NH3");
         //time4 = 0;
         ui->plot_box_4->xAxis->setRange(time4, 70);
-        ui->plot_box_4->graph()->setPen(QPen(Qt::blue));
-        ui->plot_box_4->replot();
+        ui->plot_box_4->graph()->setPen(NH3pen);
+        //ui->plot_box_4->replot();
         break;
 
     case 2:
-        m_value = CH4;
-        ui->label_33->setText(QString::number(m_value));
+        //m_value = CH4;
+        //ui->label_33->setText(QString::number(m_value));
         ui->plot_box_4->graph()->setName("CH4");
         ui->plot_box_4->yAxis->setLabel("CH4");
-        ui->plot_box_4->graph()->setPen(QPen(Qt::green));
+        ui->plot_box_4->graph()->setPen(CH4pen);
         ui->plot_box_4->xAxis->setRange(time4, 70);
-        ui->plot_box_4->replot();
+        //ui->plot_box_4->replot();
 
         break;
 
     case 3:
-        m_value = NO2;
-        ui->label_33->setText(QString::number(m_value));
+        //m_value = NO2;
+        //ui->label_33->setText(QString::number(m_value));
         ui->plot_box_4->graph()->setName("NO2");
         ui->plot_box_4->yAxis->setLabel("NO2");
-        ui->plot_box_4->graph()->setPen(QPen(Qt::magenta));
+        ui->plot_box_4->graph()->setPen(NO2pen);
         ui->plot_box_4->xAxis->setRange(time4, 70);
-        ui->plot_box_4->replot();
+        //ui->plot_box_4->replot();
         break;
 
     case 4:
-        m_value = CO;
-        ui->label_33->setText(QString::number(m_value));
+        //m_value = CO;
+        //ui->label_33->setText(QString::number(m_value));
         ui->plot_box_4->graph()->setName("CO");
         ui->plot_box_4->yAxis->setLabel("CO");
-        ui->plot_box_4->graph()->setPen(QPen(Qt::yellow));
+        ui->plot_box_4->graph()->setPen(COpen);
         ui->plot_box_4->xAxis->setRange(time4, 70);
-        ui->plot_box_4->replot();
+        //ui->plot_box_4->replot();
         break;
 
     case 5:
-        m_value = VOC;
-        ui->label_33->setText(QString::number(m_value));
+        //m_value = VOC;
+        //ui->label_33->setText(QString().setNum(VOC, 'g', 2));
+        //ui->label_34->setText("%");
         ui->plot_box_4->graph()->setName("VOC");
         ui->plot_box_4->yAxis->setLabel("VOC");
-        ui->plot_box_4->graph()->setPen(QPen(Qt::white));
+        ui->plot_box_4->graph()->setPen(VOCpen);
         ui->plot_box_4->xAxis->setRange(time4, 70);
-        ui->plot_box_4->replot();
         break;
 
     case 6:
+        ui->plot_box_4->graph()->setName("H2S");
+        ui->plot_box_4->yAxis->setLabel("H2S");
+        ui->plot_box_4->graph()->setPen(H2Spen);
+        ui->plot_box_4->xAxis->setRange(time4, 70);
+        break;
+
+    case 7:
+        ui->plot_box_4->graph()->setName("LPG");
+        ui->plot_box_4->yAxis->setLabel("LPG");
+        ui->plot_box_4->graph()->setPen(LPGpen);
+        ui->plot_box_4->xAxis->setRange(time4, 70);
+        break;
+
+    case 8:
+        ui->plot_box_4->graph()->setName("C3H8");
+        ui->plot_box_4->yAxis->setLabel("C3H8");
+        ui->plot_box_4->graph()->setPen(C3H8pen);
+        ui->plot_box_4->xAxis->setRange(time4, 70);
+        break;
 
     default:
         break;
@@ -643,8 +855,8 @@ void MainWindow::on_prscr1st_tab_clicked()
 
 void MainWindow::Json_writing()
 {
-    QString currentDateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
-    json_line = currentDateTime + ": " + json_line + "\n";
+    //QString currentDateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"); currentDateTime + ": " +
+    json_line = json_line + "\n";
     ui->plainTextEdit->insertPlainText(json_line);
 }
 
@@ -672,4 +884,3 @@ void MainWindow::display_timer()
     ui->run_timer->setText(time_count.toString("hh:mm:ss"));
     //qDebug()<< time_count.toString("hh:mm:ss");
 }
-
