@@ -30,7 +30,7 @@ generate plots:
 
 Detail information about hardware and software design process is described here on my 
 page:
-
+https://www.hackster.io/Dima_Panasenko/environment-research-with-c-programming-dd3663
 
 
  
