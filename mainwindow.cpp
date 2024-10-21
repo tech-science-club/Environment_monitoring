@@ -281,24 +281,11 @@ MainWindow::MainWindow(QWidget *parent)    :
     ui->plot_box_3->yAxis->setLabel("Concentration");
     ui->plot_box_3->yAxis->setRange(0, 750);
 
-    // Enable and customize the legend
-    ui->plot_box_3->legend->setVisible(true); // Make the legend visible
-    ui->plot_box_3->legend->setBrush(QBrush(QColor(255, 255, 255, 150))); // Set background color with transparency
-    ui->plot_box_3->legend->setBorderPen(QPen(Qt::black)); // Set border color
+    
+    ui->plot_box_3->legend->setVisible(true); 
+    ui->plot_box_3->legend->setBrush(QBrush(QColor(255, 255, 255, 150))); 
+    ui->plot_box_3->legend->setBorderPen(QPen(Qt::black)); 
 
-    //ui->plot_box_3->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignRight | Qt::AlignTop);
-
-    // Optionally adjust the margins if the plot looks too squeezed
-    //ui->plot_box_3->axisRect()->setMinimumMargins(QMargins(0, 0, 10, 0));  // Add more space on the right for the legend
-
-    // QCPLayoutGrid *subLayout = new QCPLayoutGrid;
-    // ui->plot_box_3->plotLayout()->addElement(0, 1, subLayout);
-    // subLayout->addElement(0, 0, new QCPLayoutElement);
-    // subLayout->addElement(1, 0, ui->plot_box_3->legend);
-    // subLayout->addElement(2, 0, new QCPLayoutElement);
-    // subLayout->addElement(3, 0, new QCPLayoutElement);
-    // ui->plot_box_3->plotLayout()->setColumnStretchFactor(1, 0.001);
-    // ui->plot_box_3->plotLayout()->setRowStretchFactor(1, 0.001);
     //----------------------pollutants plot----------------------------------
 
     ui->label_33->setText(QString::number(CO2));
@@ -502,17 +489,7 @@ void MainWindow::update_plot()
 
     }
 
-    /*double DRAP_y_axes = 2;
-    double valueToAdd = DRAP;
-
-    QMetaObject::invokeMethod(this, [this, DRAP_y_axes, valueToAdd]() {
-        ui->plot_box_1->yAxis->setRange(-0.05, DRAP_y_axes);
-        ui->plot_box_1->graph()->addData(time, valueToAdd);
-        ui->plot_box_1->replot();
-        if (time > 60) {
-            ui->plot_box_1->xAxis->setRange(time - 60, time + 10);
-        }
-    });*/
+   
 }
 
 void MainWindow::update_plot2()
@@ -533,24 +510,6 @@ void MainWindow::update_plot2()
      }
     ui->det_particles->setText(QString::number(DRAPCounts));
     ui->mkSv_label->setText(QString().setNum(mkSv, 'g', 2));
-
-
-    /*double mSV_y_axes = 0;
-  // Calculate range based on data
-    double mkSvValue = mkSv;   // Calculate new data point
-
-    // Safely invoke GUI updates on the main thread
-    QMetaObject::invokeMethod(this, [this, mSV_y_axes, mkSvValue]() {
-        ui->plot_box_2->yAxis->setRange(-0.01, mSV_y_axes);
-        ui->plot_box_2->graph()->addData(time2, mkSvValue);
-        ui->plot_box_2->replot();
-        if (time2 > 60) {
-            ui->plot_box_2->xAxis->setRange(time2 - 60, time2 + 5);
-        }
-        ui->det_particles->setText(QString::number(DRAPCounts));
-        ui->mkSv_label->setText(QString().setNum(mkSv, 'g', 2));
-    });*/
-    //ui->mkSv_label->setAlignment(Qt::AlignRight);
 
 }
 
@@ -581,7 +540,7 @@ void MainWindow::update_plot3()
 void MainWindow::update_plot4()
 {
     time4+=0.1;
-    switch (current_compound_index) {  // You can store the selected index in a variable (e.g., current_compound_index)
+    switch (current_compound_index) {  
         case 0:  // CO2
             m_value = CO2;
             break;
